@@ -53,7 +53,7 @@ class PurchaseController extends Controller
     public function deletePurchase(Request $request, $id){
         $purchase = Purchase::find($id);
         if (is_null($purchase)) {
-            return response()->json(['message' => 'Purchasenot Found'], 404);
+            return response()->json(['message' => 'Purchase not Found'], 404);
         }
         $purchase->delete();
         return response()->json(null, 204);

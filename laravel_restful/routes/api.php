@@ -7,6 +7,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseDetailController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SalesDetailController;
+use App\Http\Controllers\CustomerController;
 use App\Models\Category;
 
 /*
@@ -74,3 +77,16 @@ Route::get('purchase-details/{id}', [PurchaseDetailController::class, 'getPurcha
 Route::post('addPurchaseDetail', [PurchaseDetailController::class, 'addPurchaseDetail']);
 Route::put('purchase-details/{id}', [PurchaseDetailController::class, 'updatePurchaseDetail']);
 Route::delete('purchase-details/{id}', [PurchaseDetailController::class, 'deletePurchaseDetail']);
+
+//Customer Routes
+Route::get('customers', [CustomerController::class, 'getCustomers'])->name('customers');
+Route::get('customers/{id}', [CustomerController::class, 'getCustomerById']);
+Route::post('addCustomer', [CustomerController::class, 'addCustomer']);
+Route::put('updateCustomer/{id}', [CustomerController::class, 'updateCustomer']);
+Route::delete('deleteCustomer/{id}', [CustomerController::class, 'deleteCustomer']);
+
+//Sales route
+Route::get('sales', [SalesController::class, 'getSales'])->name('sales');
+Route::get('sales/{id}', [SalesController::class, 'getSalesById']);
+Route::post('addSales', [SalesController::class, 'addSales']);
+Route::delete('deleteSales/{id}', [SalesController::class, 'deleteSales']);
