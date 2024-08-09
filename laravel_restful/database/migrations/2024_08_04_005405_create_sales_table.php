@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id');
-            $table->date('sales_date');
+            $table->date('sale_date');
             $table->decimal('total_amount');
             $table->timestamps();
 

@@ -21,22 +21,6 @@ class ProductController extends Controller
         return response()->json($product, 200);
     }
 
-    // public function addProduct(Request $request){
-    //     $validatedData = $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'description' => 'nullable|string',
-    //         'stock' => 'required|integer',
-    //         'category_id' => 'required|exists:categories,id',
-    //     ]);
-    //     $product = new Product();
-    //     $product->name = $validatedData['name'];
-    //     $product->description = $validatedData['description'];
-    //     $product->stock = $validatedData['stock'];
-    //     $product->category_id = $validatedData['category_id'];
-    //     $product->save();
-    
-    //     return response($product, 201);
-    // }
     public function addProduct(Request $request){
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:products,name',
