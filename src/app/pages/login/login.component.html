@@ -1,0 +1,56 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+  
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-5">Please enter your Email and Password!</p>
+  
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="text" id="idText" class="form-control form-control-lg" />
+                  <label class="form-label">User ID</label>
+                </div>
+  
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="password" id="passwordText" class="form-control form-control-lg" />
+                  <label class="form-label">Password</label>
+                </div>
+  
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" (click)="signIn()">Login</button>
+  
+              </div>
+  
+              <div>
+                <p class="mb-0 text-white-50">Nando Teknik Pontianak</p>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="peringatanModal" tabindex="-1" role="dialog" aria-labelledby="peringatanModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="peringatanModalLabel">Login Gagal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ID atau Password salah!
+        </div>
+        <div class="modal-footer">  
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>

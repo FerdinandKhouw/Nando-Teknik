@@ -1,0 +1,67 @@
+<body>
+    <div class="container mt-4">
+        <h1><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a> Tambah Service Produk</h1>
+        <div id="form">
+            <form (ngSubmit)="insertServiceProductData()">
+                <div class="form-group">
+                    <label for="date">Tanggal Pembelian</label>
+                    <input type="date" name="date" class="form-control" [(ngModel)]="serviceProduct.date">
+                </div>
+                <div class="form-group">
+                    <label for="name">Konsumen</label>
+                    <select name="customer" class="form-control" [(ngModel)]="serviceProduct.customer_id">
+                        <option *ngFor="let cust of customers" [value]="cust.id">{{ cust.name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product">Produk</label>
+                    <select name="product" class="form-control" [(ngModel)]="serviceProduct.product_id">
+                        <option *ngFor="let prod of products" [value]="prod.id">{{ prod.name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Jumlah</label>
+                    <input type="text" name="quantity" class="form-control" [(ngModel)]="serviceProduct.quantity">
+                </div>
+                <div class="form-group">
+                    <label for="remarks">Keterangan</label>
+                    <input type="text" name="remarks" class="form-control" [(ngModel)]="serviceProduct.remarks">
+                </div>
+                <!-- Action -->
+                <button class="btn btn-primary">Submit</button>
+                <!-- <button type="button" class="btn btn-secondary" *ngIf="editingCategory" (click)="cancelEdit()">
+                    Cancel
+                </button> -->
+            </form>
+        </div>
+        <br>
+        <div id="form">
+            <table class="table table-bordered table-striped display" style="width:100%;text-align: center;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Konsumen</th>
+                        <th>Produk</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="thead-light">
+                    <tr *ngFor="let service of services">
+                        <td>{{ service.date }}</td>
+                        <td>{{ service.customer.name }}</td>
+                        <td>{{ service.product.name }}</td>
+                        <td>{{ service.quantity }}</td>
+                        <td>{{ service.remarks }}</td>
+                        <td>
+                            <!-- <button class="btn btn-warning btn-sm" (click)="selectCategory(category)">Edit</button> -->
+                            <button class="btn btn-danger btn-sm"(click)="deleteServiceProductData(service.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+</body>

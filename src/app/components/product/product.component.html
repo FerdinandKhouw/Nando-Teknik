@@ -1,0 +1,62 @@
+
+<body>
+    <div class="container mt-4">
+        <h1><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a> Produk</h1>
+        <div id="form" *ngIf="role == 'admin'">
+            <form (ngSubmit)="insertProductData()">
+                <div class="form-group">
+                    <label for="name">Kategori Produk</label>
+                    <select name="category" class="form-control" [(ngModel)]="product.category_id">
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">Kode Produk</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="product.name">
+                </div>
+                <div class="form-group">
+                    <label for="description">Deskripsi</label>
+                    <input type="text" name="description" class="form-control" [(ngModel)]="product.description">
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stok</label>
+                    <input type="text" name="stock" class="form-control" [(ngModel)]="product.stock">
+                </div>
+                <!-- Action -->
+                <button class="btn btn-primary">Submit</button>
+                <!-- <button type="button" class="btn btn-secondary" *ngIf="editingCategory" (click)="cancelEdit()">
+                    Cancel
+                </button> -->
+            </form>
+        </div>
+        <br>
+        <div id="form">
+            <table class="table table-bordered table-striped display" style="width:100%;text-align: center;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nomor</th>
+                        <th>Kategori</th>
+                        <th>Kode Produk</th>
+                        <th>Deskripsi</th>
+                        <th>Stok</th>
+                        <th *ngIf="role == 'admin'">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="thead-light">
+                    <tr *ngFor="let prod of products; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ prod.category.name }}</td>
+                        <td>{{ prod.name }}</td>
+                        <td>{{ prod.description }}</td>
+                        <td>{{ prod.stock }}</td>
+                        <td *ngIf="role == 'admin'">
+                            <!-- <button class="btn btn-warning btn-sm" (click)="selectCategory(category)">Edit</button> -->
+                            <button class="btn btn-danger btn-sm"(click)="deleteProductData(prod.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+</body>

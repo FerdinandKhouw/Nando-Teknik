@@ -1,0 +1,40 @@
+<body>
+    <div class="container mt-4">
+        <h1><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a> Tambah Kategori</h1>
+        <div id="form">
+            <form (ngSubmit)="insertCategoryData()">
+                <div class="form-group">
+                    <label for="name">Name Kategori</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="category.name">
+                </div>
+                <button class="btn btn-primary">{{ editingCategory ? 'Update Category' : 'Add Category' }}</button>
+                <button type="button" class="btn btn-secondary" *ngIf="editingCategory" (click)="cancelEdit()">
+                    Cancel
+                </button>
+            </form>
+        </div>
+        <br>
+        <div id="form">
+        <table class="table table-bordered table-striped display" style="width:100%;text-align: center;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nomor</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="thead-dark">
+                <tr *ngFor="let category of categories; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <!-- <button class="btn btn-warning btn-sm" (click)="selectCategory(category)">Edit</button> -->
+                        <button class="btn btn-danger btn-sm" (click)="deleteCategoryData(category.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <br>
+    </div>
+</body>

@@ -1,0 +1,178 @@
+<!-- <form (ngSubmit)="insertPurchaseData()">
+    <div class="form-group">
+        <label for="supplier">Supplier</label>
+        <select name="supplier" class="form-control" [(ngModel)]="purchase.supplier_id">
+            <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="purchase_date">Tanggal Pembelian</label>
+        <input type="date" name="purchase_date" class="form-control" [(ngModel)]="purchase.purchase_date">
+    </div>
+    <div class="form-group">
+        <label for="total_amount">Pembayaran (hari)</label>
+        <input placeholder="0-90" type="number" name="total_amount" class="form-control"
+            [(ngModel)]="purchase.total_amount">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="addDetail()">Add Product</button>
+    </div>
+
+    <hr>
+
+    <div class="form-group" *ngFor="let detail of purchase.details; let i = index">
+        <label>Product {{ i + 1 }}</label>
+        <select name="product" class="form-control" [(ngModel)]="detail.product_id">
+            <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+        </select>
+        <input type="number" name="quantity" class="form-control" placeholder="Quantity" [(ngModel)]="detail.quantity">
+        <input type="number" name="price" class="form-control" placeholder="Price" [(ngModel)]="detail.price">
+        <button type="button" class="btn btn-danger" (click)="removeDetail(i)">Remove</button>
+        <hr>
+    </div>
+
+    <button class="btn btn-dark btn-sm mt-4">
+        Submit
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Date</th>
+            <th scope="col">Terms</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Details</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let purchase of purchases">
+            <td>{{ purchase.id }}</td>
+            <td>{{ purchase.purchase_date }}</td>
+            <td>{{ purchase.total_amount }} hari</td>
+            <td>{{ purchase.supplier_id}}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let detail of purchase.details">
+                        {{ detail.quantity }} x {{ detail.product?.name }} (Rp. {{ detail.price }})
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let detail of purchase.details">
+                        Rp. {{ detail.total }}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+ -->
+
+<!--  -->
+
+<body>
+    <div class="container mt-4">
+        <h1><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary"><i
+                    class="fas fa-arrow-left"></i></a> Tambah Pembelian</h1>
+        <div id="form">
+            <form (ngSubmit)="insertPurchaseData()">
+                <div class="form-group">
+                    <label for="supplier">Supplier</label>
+                    <select name="supplier" class="form-control" [(ngModel)]="purchase.supplier_id">
+                        <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="purchase_date">Tanggal Pembelian</label>
+                    <input type="date" name="purchase_date" class="form-control" [(ngModel)]="purchase.purchase_date">
+                </div>
+                <div class="form-group">
+                    <label for="total_amount">Pembayaran (hari)</label>
+                    <input placeholder="0-90" type="number" name="total_amount" class="form-control"
+                        [(ngModel)]="purchase.total_amount">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-success btn-sm" (click)="addDetail()">Tambah Produk</button>
+                </div>
+                <hr>
+
+                <!-- purchase detail -->
+                <div class="form-row" *ngFor="let detail of purchase.details; let i = index">
+                    <div>
+                        <label>Produk ke-{{ i + 1 }}</label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select name="product" class="form-control" [(ngModel)]="detail.product_id">
+                            <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="number" name="quantity" class="form-control" placeholder="Quantity"
+                            [(ngModel)]="detail.quantity">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="number" name="price" class="form-control" placeholder="Price"
+                            [(ngModel)]="detail.price">
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="removeDetail(i)">Hapus Produk</button>
+                    </div>
+                </div>
+
+                <!-- Action -->
+                <button class="btn btn-primary btn-lg">Submit</button>
+                <!-- <button type="button" class="btn btn-secondary" *ngIf="editingCategory" (click)="cancelEdit()">
+                    Cancel
+                </button> -->
+            </form>
+        </div>
+        <br>
+        <div id="form">
+            <table class="table table-bordered table-striped display" style="width:100%;text-align: center;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No.</th>
+                        <th>Tanggal</th>
+                        <th>Pembayaran</th>
+                        <th>Vendor</th>
+                        <th>Detail Produk</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="thead-dark">
+                    <tr *ngFor="let purchase of purchases; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ purchase.purchase_date }}</td>
+                        <td>{{ purchase.total_amount }} hari</td>
+                        <td>{{ purchase.supplier_id}}</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let detail of purchase.details">
+                                    {{ detail.quantity }} x {{ detail.product?.name }} (Rp. {{ detail.price }})
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let detail of purchase.details">
+                                    Rp. {{ detail.total }}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <!-- <button class="btn btn-warning btn-sm" (click)="selectCategory(category)">Edit</button> -->
+                            <button class="btn btn-danger btn-sm"
+                                (click)="deletePurchaseData(purchase.id)">Hapus Pembelian</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+</body>

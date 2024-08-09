@@ -1,0 +1,44 @@
+<body>
+    <div class="container mt-4">
+      <h1>
+        <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i>
+        </a> Laporan
+      </h1>
+      <div id="form">
+        <form (ngSubmit)="getReportData()">
+          <div class="form-group">
+            <label for="start_date">Tanggal Mulai</label>
+            <input type="date" id="start_date" [(ngModel)]="start_date" name="start_date" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="end_date">Tanggal Akhir</label>
+            <input type="date" id="end_date" [(ngModel)]="end_date" name="end_date" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </form>
+      </div>
+      <br>
+      <div id="form">
+        <table class="table table-bordered table-striped display" style="width:100%;text-align: top;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Tipe</th>
+              <th scope="col">Nama Produk</th>
+              <th scope="col">Kuantitas</th>
+            </tr>
+          </thead>
+          <tbody class="tbody-light">
+            <tr *ngFor="let item of report; let i = index">
+              <td scope="row">{{ i + 1 }}</td>
+              <td scope="row">{{ item.type }}</td>
+              <td scope="row">{{ item.product_name }}</td>
+              <td scope="row">{{ item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  

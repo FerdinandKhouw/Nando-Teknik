@@ -1,0 +1,58 @@
+<body>
+    <div class="container mt-4">
+        <h1><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a> Tambah Customer</h1>
+        <div id="form">
+            <form (ngSubmit)="insertCustomerData()">
+                <div class="form-group">
+                    <label for="name">Nama Customer</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="customer.name">
+                </div>
+                <div class="form-group">
+                    <label for="address">Email</label>
+                    <input type="text" name="address" class="form-control" [(ngModel)]="customer.email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon</label>
+                    <input type="text" name="phone" class="form-control" [(ngModel)]="customer.phone">
+                </div>
+                <div class="form-group">
+                    <label for="shipment">Alamat</label>
+                    <input type="text" name="shipment" class="form-control" [(ngModel)]="customer.address">
+                </div>
+                <button class="btn btn-primary">Submit</button>
+                <!-- <button type="button" class="btn btn-secondary" *ngIf="editingCategory" (click)="cancelEdit()">
+                    Cancel
+                </button> -->
+            </form>
+        </div>
+        <br>
+        <div id="form">
+        <table class="table table-bordered table-striped display" style="width:100%;text-align: center;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>No. Telepon</th>
+                    <th>Pengiriman</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody  class="thead-light">
+                <tr *ngFor="let cust of customers; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ cust.name }}</td>
+                    <td>{{ cust.email }}</td>
+                    <td>{{ cust.phone }}</td>
+                    <td>{{ cust.address }}</td>
+                    <td>
+                        <!-- <button class="btn btn-warning btn-sm" (click)="selectCategory(category)">Edit</button> -->
+                        <button class="btn btn-danger btn-sm" (click)="deleteCustomerData(cust.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <br>
+    </div>
+</body>

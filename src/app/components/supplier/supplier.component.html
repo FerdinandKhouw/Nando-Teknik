@@ -1,0 +1,105 @@
+<!-- <form (ngSubmit)="insertSupplierData()">
+    <div class="form-group">
+        <label for="name">Nama Vendor</label>
+        <input type="text" name="name" class="form-control" [(ngModel)]="supplier.name">
+    </div>
+    <div class="form-group">
+        <label for="address">Alamat</label>
+        <input type="text" name="address" class="form-control" [(ngModel)]="supplier.address">
+    </div>
+    <div class="form-group">
+        <label for="no">Nomor Telepon</label>
+        <input type="text" name="no" class="form-control" [(ngModel)]="supplier.phone">
+    </div>
+    <div class="form-group">
+        <label for="shipment">Pengiriman</label>
+        <input type="text" name="shipment" class="form-control" [(ngModel)]="supplier.shipment">
+    </div>
+
+    <button class="btn btn-dark btn-sm mt-4">
+        Submit
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Shipment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let supp of suppliers">
+            <th scope="row">{{ supp.id }}</th>
+            <td>{{ supp.name }}</td>
+            <td>{{ supp.address }}</td>
+            <td>{{ supp.phone }}</td>
+            <td>{{ supp.shipment }}</td>
+        </tr>
+    </tbody>
+</table>
+ -->
+
+<!--  -->
+
+<body>
+    <div class="container mt-4">
+        <h1><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a> Tambah Vendor</h1>
+        <div id="form">
+            <form (ngSubmit)="insertSupplierData()">
+                <div class="form-group">
+                    <label for="name">Nama Supplier</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="supplier.name">
+                </div>
+                <div class="form-group">
+                    <label for="address">Alamat</label>
+                    <input type="text" name="address" class="form-control" [(ngModel)]="supplier.address">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon</label>
+                    <input type="text" name="phone" class="form-control" [(ngModel)]="supplier.phone">
+                </div>
+                <div class="form-group">
+                    <label for="shipment">Pengiriman</label>
+                    <input type="text" name="shipment" class="form-control" [(ngModel)]="supplier.shipment">
+                </div>
+                <button class="btn btn-primary">Submit</button>
+                <!-- <button type="button" class="btn btn-secondary" *ngIf="editingCategory" (click)="cancelEdit()">
+                    Cancel
+                </button> -->
+            </form>
+        </div>
+        <br>
+        <div id="form">
+        <table class="table table-bordered table-striped display" style="width:100%;text-align: center;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>No. Telepon</th>
+                    <th>Pengiriman</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="thead-light">
+                <tr *ngFor="let supp of suppliers; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ supp.name }}</td>
+                    <td>{{ supp.address }}</td>
+                    <td>{{ supp.phone }}</td>
+                    <td>{{ supp.shipment }}</td>
+                    <td>
+                        <!-- <button class="btn btn-warning btn-sm" (click)="selectCategory(category)">Edit</button> -->
+                        <button class="btn btn-danger btn-sm" (click)="deleteSupplierData(supp.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <br>
+    </div>
+</body>
